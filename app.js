@@ -2,10 +2,10 @@ const gameboard = document.getElementById("gameboard");
 
 (function renderGameboard() {
   for (let i = 0; i < 9; i++) {
-    const field = document.createElement("div");
-    field.classList.add("field");
-    field.dataset.index = i;
-    gameboard.appendChild(field);
+    const square = document.createElement("div");
+    square.classList.add("square");
+    square.dataset.index = i;
+    gameboard.appendChild(square);
   }
 })();
 
@@ -22,12 +22,12 @@ const Player = (mark) => {
 };
 
 const gameBoard = (() => {
-  const setField = (index, mark) => {
+  const setSquare = (index, mark) => {
     if (index > board.length) return;
     board[index] = mark;
   };
 
-  const getField = (index) => {
+  const getSquare = (index) => {
     if (index > board.length) return;
     return board[index];
   };
@@ -38,16 +38,16 @@ const gameBoard = (() => {
     }
   };
 
-  return { setField, getField, reset };
+  return { setSquare, getSquare, reset };
 })();
 
 const displayController = (() => {
-  const fieldElements = document.querySelectorAll(".field");
+  const squareElements = document.querySelectorAll(".square");
   const messageElement = document.getElementById("message");
   const restartButton = document.getElementById("restart-button");
 
-  fieldElements.forEach((field) =>
-    field.addEventListener("click", (e) => {
+  squareElements.forEach((square) =>
+    square.addEventListener("click", (e) => {
       if (gameController.getIsOver() || e.target.textContent !== "") return;
       gameController.playRound(parseInt(e.target.dataset.index));
       updateGameboard();
@@ -62,8 +62,8 @@ const displayController = (() => {
   });
 
   const updateGameboard = () => {
-    for (let i = 0; i < fieldElements.length; i++) {
-      fieldElements[i].textContent = gameBoard.getField(i);
+    for (let i = 0; i < squareElements.length; i++) {
+      squareElements[i].textContent = gameBoard.getSquare(i);
     }
   };
 
@@ -88,8 +88,8 @@ const gameController = (() => {
   let round = 1;
   let isOver = false;
 
-  const playRound = (fieldIndex) => {
-    gameBoard.setField(fieldIndex, getCurrentPlayerMark());
+  const playRound = (squareIndex) => {
+    gameBoard.setSquare(squareIndex, getCurrentPlayerMark());
     if (checkWinner(board)) {
       displayController.setResultMessage(getCurrentPlayerMark());
       isOver = true;

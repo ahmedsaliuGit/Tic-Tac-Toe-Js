@@ -3,8 +3,8 @@
   --font-color: #03273f;
   --header-background-color: #57a8de;
   --header-font-color: #03273f;
-  --field-background-color: #ededee;
-  --field-background-color-hover: #d8e4e9;
+  --square-background-color: #ededee;
+  --square-background-color-hover: #d8e4e9;
   --border-color: #555;
   --blue-border-color: #2a3a46;
   --button-background-color: #4c5c68;
@@ -84,19 +84,19 @@ button {
   margin: 0px auto;
 }
 
-.field {
+.square {
   width: 150px;
   height: 150px;
   border: 1px solid var(--border-color);
-  background-color: var(--field-background-color);
+  background-color: var(--square-background-color);
   font-size: 100px;
   text-align: center;
   cursor: pointer;
   user-select: none;
 }
 
-.field:hover {
-  background-color: var(--field-background-color-hover);
+.square:hover {
+  background-color: var(--square-background-color-hover);
 }
 
 .center {
@@ -167,7 +167,7 @@ button {
     height: 304px;
   }
 
-  .field {
+  .square {
     width: 100px;
     height: 100px;
     font-size: 70px;
